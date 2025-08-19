@@ -14,9 +14,9 @@ import { COLOR } from "../config/colors";
 import { MenuIcon } from "../assets/icons/menu-icon";
 import mobileLogo from "../assets/mobile-logo.png";
 import desktopLogo from "../assets/desktop-logo.png";
-import { SearchIcon } from "../assets/icons/search-icon";
 import { BasketIcon } from "../assets/icons/basket-icon";
 import { UserIcon } from "../assets/icons/user-icon";
+import { CustomInput } from "../components/customInput";
 export const Header = () => {
   const imgMObile = useMediaQuery("(min-width:670px)");
   const [open, setOpen] = React.useState(false);
@@ -35,7 +35,7 @@ export const Header = () => {
   );
   return (
     <>
-      <Box>
+      <Box bgcolor={COLOR.bg}>
         <Box bgcolor={COLOR.black} p={"9px 0px"} textAlign={"center"}>
           <Typography
             fontSize={{ xs: "12px", md: "14px" }}
@@ -54,7 +54,7 @@ export const Header = () => {
               <Drawer open={open} onClose={toggleDrawer(false)}>
                 {DrawerList}
               </Drawer>
-              <Link to={"/"} pt={"5px"}>
+              <Link to={"/"} pt={"5px"} mr={"10px"}>
                 <img
                   src={!imgMObile ? mobileLogo : desktopLogo}
                   alt="Brand logo"
@@ -62,13 +62,16 @@ export const Header = () => {
                 />
               </Link>
             </Stack>
+
             <Stack
               direction={"row"}
               alignItems={"center"}
+              justifyContent={"end"}
               gap={"12px"}
               ml={"auto"}
+              width={"100%"}
             >
-              <IconButton variant={"user"}>{SearchIcon()}</IconButton>
+              <CustomInput />
               <IconButton variant={"user"}>{BasketIcon()}</IconButton>
               <IconButton variant={"user"}>{UserIcon()}</IconButton>
             </Stack>
